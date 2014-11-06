@@ -1,6 +1,6 @@
 {
   "name": "grunt-leaves-dart",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Grunt plugin to get Dart support in Leaves.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

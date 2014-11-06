@@ -23,22 +23,16 @@ module.exports = (grunt) ->
     grunt.event.on 'coffee.run', (env) ->
       grunt.task.run "compileDart:#{env}"
 
+    tmpAssetsSrc = grunt.config('copy.tmpAssets.src')
+    tmpAssetsSrc.push('!dart/**/*')
+    grunt.config.set('copy.tmpAssets.src', tmpAssetsSrc)
+
   grunt.registerTask 'compileDart', 'Compile Dart', (env) ->
-    output = path.join((if env == 'tmp' then 'tmp' else 'dist'), 'dart')
-    fs.removeSync output
-    done = @async()
-    grunt.util.spawn
-      cmd: 'pub'
-      args: ['build', '-o', baseOutput]
-      opts:
-        cwd: path.join(process.cwd(), 'assets', 'dart')
-    , (err, res, code) ->
-      if err?
-        grunt.fail.warn(err.message)
-      else
-        fs.copySync path.join(baseOutput, 'web'), path.join(output)
-      if env == 'tmp'
-        request.get 'http://localhost:' + reloadPort + '/changed?files=main.dart.js', (err, res) ->
-          done()
-      else
-        done()
+
+    unless env == 'tmp'
+      grunt.log.writeln 'Production mode not supported yet. Aborting'
+      return
+
+    fs.copySync path.join('assets', 'dart', 'web'), path.join('tmp', 'dart')
+    fs.remove path.join('tmp', 'dart', 'packages')
+    fs.copySync path.join('assets', 'dart', 'packages'), path.join('tmp', 'dart', 'packages')
