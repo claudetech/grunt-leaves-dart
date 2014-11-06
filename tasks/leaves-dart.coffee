@@ -14,11 +14,18 @@ module.exports = (grunt) ->
     grunt.event.on 'makeCopy.run', (env) ->
       grunt.task.run "compileDart:#{env}"
 
+    grunt.config.set 'watch.dart',
+      files: ['dart/**/*']
+      tasks: ['compileDart:tmp']
+
+    grunt.config.set 'copy.dart'
+      expand: true
+      cwd: 'dart'
+      src: ['**/*']
+      dest: 'tmp'
+
   grunt.registerTask 'compileDart', 'Compile Dart', (env) ->
     unless env == 'tmp'
       grunt.log.writeln 'Production mode not supported yet. Aborting'
       return
-
-    if fs.existsSync path.join('tmp', 'dart', 'packages')
-      fs.removeSync path.join('tmp', 'dart', 'packages')
-    fs.copySync 'packages', path.join('tmp', 'dart', 'packages')
+    grunt.task.run 'copy:dart'

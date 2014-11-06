@@ -5,6 +5,7 @@ in [Leaves](http://oss.claudetech.com/leaves/).
 
 This will not be useful if you are not using Leaves.
 
+
 In development, this copies the Dart files
 and reload the browser automatically, so you need
 a browser that can run Dart (only Dartium for now).
@@ -20,9 +21,13 @@ $ npm install --save-dev grunt-leaves-dart
 
 ## Usage
 
-You should have a `dart` directory with your `.dart`
-files, and your `pubspec.yaml` at th root directoy.
-Note that you need to run `pub get` manually.
+You need to set the base directory for `tmp` to `tmp/web`:
+
+```sh
+$ leaves config set dir.tmp tmp/web
+```
+
+The directory layout should look like this.
 
 ```sh
 $ tree
@@ -30,15 +35,19 @@ $ tree
 ├── assets
 │   ├── css
 │   │   └── main.styl
-│   ├── dart
-│   │   └── main.dart
 │   ├── favicon.ico
 │   ├── img
 │   └── js
 │       └── app.coffee
 ├── bower.json
+├── dart
+│   ├── lib
+│   │   ├── alibfile.dart
+│   │   └── mypackage
+│   ├── pubspec.lock
+│   └── web
+│       └── main.dart
 ├── package.json
-├── pubspec.yaml
 └── views
     ├── index.jade
     └── layout.jade
