@@ -1,0 +1,29 @@
+{
+  "name": "grunt-leaves-dart",
+  "version": "0.1.0",
+  "description": "Grunt plugin to get Dart support in Leaves.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/claudetech/grunt-leaves-dart"
+  },
+  "keywords": [
+    "grunt",
+    "gruntplugin",
+    "dart",
+    "leaves"
+  ],
+  "author": "Daniel Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/claudetech/grunt-leaves-dart/issues"
+  },
+  "homepage": "https://github.com/claudetech/grunt-leaves-dart",
+  "dependencies": {
+    "fs-extra": "^0.12.0",
+    "lodash": "^2.4.1",
+    "request": "^2.47.0"
+  }
+}
